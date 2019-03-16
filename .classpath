@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" output="target/classes" path="src/main/java">
+	<classpathentry excluding="META-INF/|META-INF/" kind="src" output="target/classes" path="src/main/java">
 		<attributes>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="src/resource"/>
+	<classpathentry kind="src" path="src/resource/META-INF"/>
+	<classpathentry excluding="META-INF/|META-INF/" kind="src" path="src/resource"/>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
 			<attribute name="test" value="true"/>

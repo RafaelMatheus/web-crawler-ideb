@@ -1,15 +1,11 @@
 package page;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Wait;
 
 import common.BasePage;
 
-public class ConsultaPublica extends BasePage {
+public class ConsultaPublicaPage extends BasePage {
 	private WebElement inputCodEscola;
 
 	private WebElement btnBuscar;

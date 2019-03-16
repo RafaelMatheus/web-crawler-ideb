@@ -3,11 +3,12 @@ package br.com.webcrawler.webcrawler;
 import java.util.ArrayList;
 import java.util.List;
 
-import page.ConsultaPublica;
+import page.ConsultaPublicaPage;
 import utils.CsvUtils;
 
 /**
- * Hello world!
+ * 
+ * @author Rafael Castro
  *
  */
 public class App 
@@ -16,8 +17,8 @@ public class App
     	public static void main(String[] args) throws InterruptedException {
     		List<String> codigos =  CsvUtils.getCodFromCsv();
     		List<String []> linhas = new ArrayList<String[]>();
-    		ConsultaPublica page = new ConsultaPublica();
-    		for (int i = 0; i < 100; i++) {
+    		ConsultaPublicaPage page = new ConsultaPublicaPage();
+    		for (int i = 0; i < 10; i++) {
     			page.realizarConsultar(codigos.get(20));
     			linhas.add(page.getTabelaInfraEstruturaBasica(codigos.get(i)));
     		}

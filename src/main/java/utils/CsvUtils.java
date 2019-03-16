@@ -29,7 +29,7 @@ public class CsvUtils {
 	}
 	public static void writeCsv(List<String[]> entries) {
 		try {
-			 CSVWriter writer = new CSVWriter(new FileWriter("yourfile.csv"), ';');
+			 CSVWriter writer = new CSVWriter(new FileWriter(Config.pathFileAfter));
 			 writer.writeAll(entries);
 		     writer.close();
 		} catch (IOException e) {
