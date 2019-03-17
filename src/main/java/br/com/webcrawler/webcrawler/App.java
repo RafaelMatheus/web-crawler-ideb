@@ -8,9 +8,11 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import common.Conexao;
+import dao.InfraEstruturaBasicaDao;
 import model.TestModel;
 import page.ConsultaPublicaPage;
 import utils.CsvUtils;
+import webcrawler.Config;
 
 /**
  * 
@@ -21,21 +23,16 @@ public class App
 {
   
     	public static void main(String[] args) throws InterruptedException {
-//    		List<String> codigos =  CsvUtils.getCodFromCsv();
-//    		List<String []> linhas = new ArrayList<String[]>();
-//    		ConsultaPublicaPage page = new ConsultaPublicaPage();
-//    		for (int i = 0; i < 10; i++) {
-//    			page.realizarConsultar(codigos.get(20));
-//    			linhas.add(page.getTabelaInfraEstruturaBasica(codigos.get(i)));
-//    		}
-//    		 CsvUtils.writeCsv(linhas);
+    		List<String> codigos =  CsvUtils.getCodFromCsv();
+    		List<String []> linhas = new ArrayList<String[]>();
+    		ConsultaPublicaPage page = new ConsultaPublicaPage();
+    		for (int i = 1; i < 100; i++) {
+    			page.realizarConsultar(codigos.get(20));
+    			linhas.add(page.getTabelaInfraEstruturaBasica(codigos.get(i)));
+    		}
+    		 CsvUtils.writeCsv(linhas);
+    		 InfraEstruturaBasicaDao.save(Config.infras);
     		
-    		EntityManagerFactory emf = Persistence.createEntityManagerFactory("webcrawler");
-    		EntityManager em = emf.createEntityManager();
-    		TestModel model = new TestModel(10, "Rafael");
-    		em.getTransaction().begin();
-    		em.merge(model);
-    		em.getTransaction().commit();
-    		em.close();
+    	
 		}
 }
