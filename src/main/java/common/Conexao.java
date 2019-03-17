@@ -5,13 +5,12 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class Conexao {
-	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("webcrawler");
+	private static EntityManagerFactory factory;
 
 	private static EntityManagerFactory getEntityManagerFactory() {
-		if (factory == null) {
-			factory = Persistence.createEntityManagerFactory("webcrawler");
-		}
-		return factory;
+			   
+		return factory = Persistence.createEntityManagerFactory("webcrawler"); 
+
 	}
 	
 	public static EntityManager getEntityManager(){
