@@ -8,6 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import common.Conexao;
+import model.TestModel;
 import page.ConsultaPublicaPage;
 import utils.CsvUtils;
 
@@ -31,6 +32,10 @@ public class App
     		
     		EntityManagerFactory emf = Persistence.createEntityManagerFactory("webcrawler");
     		EntityManager em = emf.createEntityManager();
+    		TestModel model = new TestModel(10, "Rafael");
+    		em.getTransaction().begin();
+    		em.merge(model);
+    		em.getTransaction().commit();
+    		em.close();
 		}
-    	 
 }
