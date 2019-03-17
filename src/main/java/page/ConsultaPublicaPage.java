@@ -35,7 +35,7 @@ public class ConsultaPublicaPage extends BasePage {
 	}
 
 	public InfraEstruturaBasicaModel getTabelaInfraEstrutura(String codigoEscola) throws InterruptedException {
-		if (isVisible() == true) {
+		if (isVisible()) {
 			InfraEstruturaBasicaModel infra = new InfraEstruturaBasicaModel();
 			infra.setcodEscola(codigoEscola);
 			getPage().close();
@@ -43,7 +43,7 @@ public class ConsultaPublicaPage extends BasePage {
 		}
 		campoInfraEstruturaBasica = getPage().findElement(By.xpath("//*[@id='target-collapseTree']/span"));
 		clickJs(campoInfraEstruturaBasica);
-		Thread.sleep(7000);
+		aguarElemento(By.xpath("//*[@id='collapseTree']/div[1]/table/tbody/tr[1]/td[2]"));
 		aguaConsumidaPorAlunos = getPage()
 				.findElement(By.xpath("//*[@id='collapseTree']/div[1]/table/tbody/tr[1]/td[2]"));
 
