@@ -3,16 +3,11 @@ package br.com.webcrawler.webcrawler;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import common.Conexao;
+import common.Config;
 import dao.InfraEstruturaBasicaDao;
-import model.TestModel;
+import model.InfraEstruturaBasicaModel;
 import page.ConsultaPublicaPage;
 import utils.CsvUtils;
-import webcrawler.Config;
 
 /**
  * 
@@ -25,13 +20,17 @@ public class App
     	public static void main(String[] args) throws InterruptedException {
     		List<String> codigos =  CsvUtils.getCodFromCsv();
     		List<String []> linhas = new ArrayList<String[]>();
+    		List<InfraEstruturaBasicaModel> infraBasica = new ArrayList<InfraEstruturaBasicaModel>();
+    		
     		ConsultaPublicaPage page = new ConsultaPublicaPage();
-    		for (int i = 1; i < 100; i++) {
+    		for (int i = 1; i < Config.qntRegistros+1; i++) {
     			page.realizarConsultar(codigos.get(20));
-    			linhas.add(page.getTabelaInfraEstruturaBasica(codigos.get(i)));
+    			infraBasica.add(page.getTabelaInfraEstrutura(codigos.get(i)));
+    			System.out.println("Quantidade de linhas percorridas = "+ i);
     		}
-    		 CsvUtils.writeCsv(linhas);
-    		 InfraEstruturaBasicaDao.save(Config.infras);
+//    		 CsvUtils.writeCs(linhas);
+    		 CsvUtils.writeCsvByInfra(infraBasica);
+    		 InfraEstruturaBasicaDao.save(infraBasica);
     		
     	
 		}

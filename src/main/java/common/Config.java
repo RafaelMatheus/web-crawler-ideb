@@ -1,4 +1,4 @@
-package webcrawler;
+package common;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -11,5 +11,7 @@ public class Config {
 	public static String chromeDrive = new File("").getAbsolutePath()+"\\src\\resource\\chromedriver.exe";
 	public static String enderecoSite = "http://idebescola.inep.gov.br/ideb/consulta-publica";
 	public static String pathFileAfter = new File("").getAbsolutePath()+"\\src\\resource\\webcrawler.csv";
+	public static int qntRegistros = 2;
+	
 	public static List<InfraEstruturaBasicaModel> infras = new ArrayList<InfraEstruturaBasicaModel>();
 }
