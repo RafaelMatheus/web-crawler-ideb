@@ -1,20 +1,28 @@
 package common;
 
+import java.util.NoSuchElementException;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class BasePage {
 	private WebDriver driver;
+
+	private WebElement btnBuscarNovaEscola;
 
 	public WebDriver getPage() {
 		return driver;
 	}
 
 	public void setup() {
+		ChromeOptions options = new ChromeOptions();
+		options.setHeadless(Config.headless);
 		System.setProperty("webdriver.chrome.driver", Config.chromeDrive);
-		driver = new ChromeDriver();
+		driver = new ChromeDriver(options);
 		driver.manage().window().maximize();
 	}
 
@@ -33,11 +41,22 @@ public class BasePage {
 	public void subimit(WebElement elemento) {
 		elemento.submit();
 	}
-	
+
 	public void clickJs(WebElement element) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("var evt = document.createEvent('MouseEvents');" + 
-		"evt.initMouseEvent('click',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);" + 
-				"arguments[0].dispatchEvent(evt);", element);
+		js.executeScript("var evt = document.createEvent('MouseEvents');"
+				+ "evt.initMouseEvent('click',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);"
+				+ "arguments[0].dispatchEvent(evt);", element);
+	}
+
+	public boolean isVisible() {
+		boolean exists = true;
+		try {
+			getPage().findElement(By.xpath("//*[@id='contentContainer']/div[3]/div/div"))exists;
+
+		} catch (NoSuchElementException e) {
+			exists = false;
+		}
+		return exists;
 	}
 }
