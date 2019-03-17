@@ -2,6 +2,7 @@ package common;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,8 +12,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
 	private WebDriver driver;
-
-	private WebElement btnBuscarNovaEscola;
 
 	public WebDriver getPage() {
 		return driver;
@@ -51,14 +50,14 @@ public class BasePage {
 
 	public boolean isVisible() {
 		boolean exists = true;
-		
-				exists = false;
-				
-				
+		try {
+			getPage().findElement(By.xpath("//*[@id='contentContainer']/div[3]/div/div"));
+		} catch (NoSuchElementException e) {
+			exists = false;
+		}
 		return exists;
 	}
-	
-	
+
 	public void aguarElemento(By by) {
 		WebDriverWait wait = new WebDriverWait(getPage(), 7000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(by));
