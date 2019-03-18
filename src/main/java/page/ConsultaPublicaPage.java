@@ -18,7 +18,9 @@ public class ConsultaPublicaPage extends BasePage {
 	private WebElement abastecimentoDeAgua;
 
 	private WebElement abastecimentoEletrica;
-
+	
+	private WebElement esgotoSanitario;
+	
 	private WebElement banheiroPredio;
 
 	private WebElement banheiroFora;
@@ -43,25 +45,28 @@ public class ConsultaPublicaPage extends BasePage {
 		}
 		campoInfraEstruturaBasica = getPage().findElement(By.xpath("//*[@id='target-collapseTree']/span"));
 		clickJs(campoInfraEstruturaBasica);
-		aguarElemento(By.xpath("//*[@id='collapseTree']/div[1]/table/tbody/tr[1]/td[2]"));
+		aguardarElemento(By.xpath("//*[@id='collapseTree']/div[1]/table/tbody/tr[1]/td[2]"));
+		
 		aguaConsumidaPorAlunos = getPage()
 				.findElement(By.xpath("//*[@id='collapseTree']/div[1]/table/tbody/tr[1]/td[2]"));
 
 		abastecimentoDeAgua = getPage().findElement(By.xpath("//*[@id='collapseTree']/div[1]/table/tbody/tr[2]/td[2]"));
 
 		abastecimentoEletrica = getPage()
-				.findElement(By.xpath("//*[@id='collapseTree']/div[1]/table/tbody/tr[2]/td[2]"));
+				.findElement(By.xpath("//*[@id='collapseTree']/div[1]/table/tbody/tr[3]/td[2]"));
 
-		banheiroPredio = getPage().findElement(By.xpath("//*[@id='collapseTree']/div[1]/table/tbody/tr[4]/td[2]"));
+		esgotoSanitario = getPage().findElement(By.xpath("//*[@id='collapseTree']/div[1]/table/tbody/tr[4]/td[2]"));
 
-		banheiroFora = getPage().findElement(By.xpath("//*[@id='collapseTree']/div[1]/table/tbody/tr[5]/td[2]"));
-
+		banheiroPredio = getPage().findElement(By.xpath("//*[@id='collapseTree']/div[1]/table/tbody/tr[5]/td[2]"));
+		
+		banheiroFora = getPage().findElement(By.xpath("//*[@id='collapseTree']/div[1]/table/tbody/tr[6]/td[2]"));
+		
 		localFunc = getPage().findElement(By.xpath("//*[@id='collapseTree']/div[1]/table/tbody/tr[7]/td[2]"));
 
 		InfraEstruturaBasicaModel infra = new InfraEstruturaBasicaModel(codigoEscola, aguaConsumidaPorAlunos.getText(),
-				abastecimentoDeAgua.getText(), abastecimentoEletrica.getText(), banheiroPredio.getText(),
-				banheiroFora.getText(), localFunc.getText(), localFunc.getText());
-
+				abastecimentoDeAgua.getText(), abastecimentoEletrica.getText(), esgotoSanitario.getText(), banheiroPredio.getText(),
+				banheiroFora.getText(), localFunc.getText());
+	
 		getPage().close();
 
 		return infra;

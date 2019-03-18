@@ -58,7 +58,7 @@ public class BasePage {
 		return exists;
 	}
 
-	public void aguarElemento(By by) {
+	public void aguardarElemento(By by) {
 		WebDriverWait wait = new WebDriverWait(getPage(), 7000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(by));
 	}
