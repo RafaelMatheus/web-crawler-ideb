@@ -67,7 +67,7 @@ public class ConsultaPublicaPage extends BasePage {
 				abastecimentoDeAgua.getText(), abastecimentoEletrica.getText(), esgotoSanitario.getText(), banheiroPredio.getText(),
 				banheiroFora.getText(), localFunc.getText());
 	
-		getPage().close();
+		quit();
 
 		return infra;
 

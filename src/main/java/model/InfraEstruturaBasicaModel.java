@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Table(name = "infraBasica")
 public class InfraEstruturaBasicaModel {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String codEscola;
 	private String aguaConsumidaPorAlunos;
@@ -21,8 +21,7 @@ public class InfraEstruturaBasicaModel {
 	private String banheiroFora;
 	private String localFuncEscola;
 
-	public InfraEstruturaBasicaModel( 
-			String codEscola, String aguaConsumidaPorAlunos, String abastecimentoDeAgua,
+	public InfraEstruturaBasicaModel(String codEscola, String aguaConsumidaPorAlunos, String abastecimentoDeAgua,
 			String abastecimentoEnergia, String esgotoSanitario, String banheiroPredio, String banheiroFora,
 			String localFuncEscola) {
 		super();

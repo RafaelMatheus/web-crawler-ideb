@@ -24,6 +24,14 @@ public class BasePage {
 		driver = new ChromeDriver(options);
 		driver.manage().window().maximize();
 	}
+	
+	public void close() {
+		driver.close();
+	}
+	
+	public void quit() {
+		driver.quit();
+	}
 
 	public void get() {
 		driver.get(Config.enderecoSite);

@@ -30,7 +30,7 @@ public class App {
 				System.out.println("Realizando consulta com o código: " + codigos.get(i));
 				System.out.println("Quantidade de linhas percorridas = " + i);
 				page.realizarConsultar(codigos.get(i));
-				infraBasica.add(page.getTabelaInfraEstrutura(codigos.get(i)));
+				InfraEstruturaBasicaDao.save(page.getTabelaInfraEstrutura(codigos.get(i)));
 			}
 
 		} catch (Exception e) {
@@ -38,7 +38,6 @@ public class App {
 			ConfigDao.save(new ConfigModel(i));
 		} finally {
 			CsvUtils.writeCsvByInfra(infraBasica);
-			InfraEstruturaBasicaDao.save(infraBasica);
 		}
 	}
 }
