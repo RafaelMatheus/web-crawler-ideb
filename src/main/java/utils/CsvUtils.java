@@ -13,6 +13,7 @@ import common.Config;
 import model.InfraEstruturaBasicaModel;
 
 public class CsvUtils {
+	
 	public static List<String> getCodFromCsv() {
 		List<String> codigos = new ArrayList<String>();
 		try {
@@ -20,7 +21,7 @@ public class CsvUtils {
 			CSVReader reader = new CSVReader(new FileReader(Config.pathFile), ';');
 			String[] nextLine;
 			while ((nextLine = reader.readNext()) != null) {
-				codigos.add(nextLine[20]);
+				codigos.add(nextLine[2]);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

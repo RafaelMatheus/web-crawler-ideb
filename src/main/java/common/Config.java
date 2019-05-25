@@ -7,7 +7,7 @@ public class Config {
 	public static String chromeDrive = new File("").getAbsolutePath() + "\\src\\resource\\chromedriver.exe";
 	public static String enderecoSite = "http://idebescola.inep.gov.br/ideb/consulta-publica";
 	public static String pathFileAfter = new File("").getAbsolutePath() + "\\src\\resource\\webcrawler.csv";
-	public static int qntRegistros = 2000;
+	public static int qntRegistros = 1220;
 	public static boolean headless = true;
 
 }
