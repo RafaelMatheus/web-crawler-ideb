@@ -20,24 +20,44 @@ public class App {
 
 	public static void main(String[] args) throws InterruptedException {
 		int i = 0;
+		int lineError = ConfigDao.get();
 		List<String> codigos = CsvUtils.getCodFromCsv();
 		List<InfraEstruturaBasicaModel> infraBasica = new ArrayList<InfraEstruturaBasicaModel>();
 
 		ConsultaPublicaPage page = new ConsultaPublicaPage();
-		try {
 
-			for (i = 1; i < Config.qntRegistros + 1; ++i) {
-				System.out.println("Realizando consulta com o código: " + codigos.get(i));
-				System.out.println("Quantidade de linhas percorridas = " + i);
-				page.realizarConsultar(codigos.get(i));
-				InfraEstruturaBasicaDao.save(page.getTabelaInfraEstrutura(codigos.get(i)));
+		if (lineError > 0) {
+			try {
+
+				for (i = lineError; i < Config.qntRegistros + 1; ++i) {
+					System.out.println("Realizando consulta com o código: " + codigos.get(i));
+					System.out.println("Quantidade de linhas percorridas = " + i);
+					page.realizarConsultar(codigos.get(i));
+					InfraEstruturaBasicaDao.save(page.getTabelaInfraEstrutura(codigos.get(i)));
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				ConfigDao.save(new ConfigModel(i));
+			} finally {
+				CsvUtils.writeCsvByInfra(infraBasica);
 			}
+		} else {
+			try {
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			ConfigDao.save(new ConfigModel(i));
-		} finally {
-			CsvUtils.writeCsvByInfra(infraBasica);
+				for (i = 1; i < Config.qntRegistros + 1; ++i) {
+					System.out.println("Realizando consulta com o código: " + codigos.get(i));
+					System.out.println("Quantidade de linhas percorridas = " + i);
+					page.realizarConsultar(codigos.get(i));
+					InfraEstruturaBasicaDao.save(page.getTabelaInfraEstrutura(codigos.get(i)));
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				ConfigDao.save(new ConfigModel(i));
+			} finally {
+				CsvUtils.writeCsvByInfra(infraBasica);
+			}
 		}
 	}
 }

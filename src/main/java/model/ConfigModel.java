@@ -16,12 +16,11 @@ public class ConfigModel {
 	private int qntLinhasPercorridas;
 
 	public ConfigModel(int qntLinhasPercorridas) {
-		super();
 		this.qntLinhasPercorridas = qntLinhasPercorridas;
 	}
-
+	
 	public ConfigModel() {
-		super();
+	
 	}
 
 	public int getId() {
