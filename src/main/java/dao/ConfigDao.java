@@ -9,9 +9,14 @@ public class ConfigDao {
 	private static EntityManager em = Conexao.getEntityManager();
 
 	public static void save(ConfigModel config) {
-		em.getTransaction().begin();
-		em.persist(config);
-		em.getTransaction().commit();
-		em.close();
+		try {
+			em.getTransaction().begin();
+			em.persist(config);
+			em.getTransaction().commit();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			em.close();
+		}
 	}
 }

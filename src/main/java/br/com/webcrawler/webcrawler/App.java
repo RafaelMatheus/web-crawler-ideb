@@ -21,7 +21,6 @@ public class App {
 	public static void main(String[] args) throws InterruptedException {
 		int i = 0;
 		List<String> codigos = CsvUtils.getCodFromCsv();
-		List<InfraEstruturaBasicaModel> infraBasica = new ArrayList<InfraEstruturaBasicaModel>();
 
 		ConsultaPublicaPage page = new ConsultaPublicaPage();
 		try {
@@ -30,15 +29,12 @@ public class App {
 				System.out.println("Realizando consulta com o código: " + codigos.get(i));
 				System.out.println("Quantidade de linhas percorridas = " + i);
 				page.realizarConsultar(codigos.get(i));
-				infraBasica.add(page.getTabelaInfraEstrutura(codigos.get(i)));
+				InfraEstruturaBasicaDao.save(page.getTabelaInfraEstrutura(codigos.get(i)));
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Ops, aconteceu algum erro: "+ e.getMessage());
 			ConfigDao.save(new ConfigModel(i));
-		} finally {
-			CsvUtils.writeCsvByInfra(infraBasica);
-			InfraEstruturaBasicaDao.save(infraBasica);
-		}
+		} 
 	}
 }
